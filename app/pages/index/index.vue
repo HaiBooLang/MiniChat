@@ -5,8 +5,8 @@
 		</view>
 		
 		<view class="foot">
-			<input type="text" class="cont">
-			<button>提交</button>
+			<input type="text" class="cont" v-model="cont">
+			<button @tap="send">提交</button>
 		</view>
 
 	</view>
@@ -16,7 +16,7 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello',
+				cont: '',
 				arr:['adsad','adsa','awra'],
 			}
 		},
@@ -24,6 +24,10 @@
 
 		},
 		methods: {
+				
+			send: function(){
+				this.arr.push(this.cont)
+			}
 
 		}
 	}
