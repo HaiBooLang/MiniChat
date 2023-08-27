@@ -26,7 +26,12 @@
 		methods: {
 				
 			send: function(){
-				this.arr.push(this.cont)
+				if(this.cont.length>0){
+					this.arr.push(this.cont)
+					
+					let aa = this.cont
+					this.socket.emit('message', aa)
+					}
 			}
 
 		}
