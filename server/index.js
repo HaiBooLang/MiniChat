@@ -10,7 +10,7 @@ io.on('connection', (socket) => {
 
     socket.on('message', (data) => {
         console.log(data)
-        io.emit('message', data)
+        socket.broadcast.emit('broadcastMessage', data)
     })
 })
 
