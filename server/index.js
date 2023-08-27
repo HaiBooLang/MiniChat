@@ -8,9 +8,9 @@ var io = require('socket.io')(server)
 io.on('connection', (socket) => {
     console.log('a user connected')
 
-    socket.on('message', (data) => {
+    socket.on('appMessage', (data) => {
         console.log(data)
-        socket.broadcast.emit('broadcastMessage', data)
+        socket.broadcast.emit('serverBroadcastMessage', data)
     })
 })
 

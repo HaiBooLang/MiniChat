@@ -1,12 +1,12 @@
 <template>
 	<view class="content">
 		<view class="main">
-			<view v-for="e in arr">{{e}}</view>
+			<view v-for="message in messageArray">{{message}}</view>
 		</view>
-		
+
 		<view class="foot">
-			<input type="text" class="cont" v-model="cont">
-			<button @tap="send">提交</button>
+			<input type="text" class="cont" v-model="message">
+			<button @tap="sendMessage">提交</button>
 		</view>
 
 	</view>
@@ -16,22 +16,28 @@
 	export default {
 		data() {
 			return {
-				cont: '',
-				arr:['aad','adsa','awra'],
+				message: '',
+				messageArray: [],
 			}
 		},
 		onLoad() {
-
+			this.getMessage()
 		},
 		methods: {
-				
-			send: function(){
-				if(this.cont.length>0){
-					this.arr.push(this.cont)
-					
-					let aa = this.cont
-					this.socket.emit('message', aa)
-					}
+
+			sendMessage: function() {
+				if (this.message.length > 0) {
+					this.messageArray.push(this.message)
+
+					let data = this.message
+					this.socket.emit('appMessage', data)
+				}
+			},
+
+			getMessage: function() {
+				this.socket.on('serverBroadcastMessage', (data) => {
+					this.messageArray.push(data)
+				})
 			}
 
 		}
@@ -51,18 +57,18 @@
 		font-size: 36rpx;
 		color: #8f8f94;
 	}
-	
-		
-	.foot{
+
+
+	.foot {
 		position: fixed;
 		width: 100%;
 		bottom: 0;
-			
-		.cont{
+
+		.cont {
 			background-color: #eee;
 			height: 60rpx;
 			width: 100%;
-			
+
 		}
 	}
 </style>
