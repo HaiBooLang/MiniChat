@@ -17,7 +17,7 @@
 		data() {
 			return {
 				cont: '',
-				arr:['adsad','adsa','awra'],
+				arr:['aad','adsa','awra'],
 			}
 		},
 		onLoad() {

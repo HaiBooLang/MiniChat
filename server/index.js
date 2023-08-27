@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-var server =app.listen(6060)
-var io = require('socket.io').listen(server)
+var server = app.listen(6060)
+var io = require('socket.io')(server)
 
 io.on('connection', (socket)=>{
     console.log('a user connected')
